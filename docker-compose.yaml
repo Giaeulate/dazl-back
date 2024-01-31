@@ -1,0 +1,50 @@
+version: '3.9'
+
+services:
+  node:
+    build: .
+    ports:
+      - '${PORT_EXTERNAL}:4040'
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_PASSWORD_ROOT: ${DB_PASSWORD_ROOT}
+      PORT: ${PORT}
+      JWT_SECRET: ${JWT_SECRET}
+      AWS_PUBLIC_BUCKET_NAME: ${AWS_PUBLIC_BUCKET_NAME}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_REGION: ${AWS_REGION}
+      MAIL_HOST: ${MAIL_HOST}
+      MAIL_PORT: ${MAIL_PORT}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      MAIL_ADDRESS: ${MAIL_ADDRESS}
+      TZ: Etc/UTC
+    restart: always
+    depends_on:
+      - mysql
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  mysql:
+    image: mysql:8
+    restart: always
+    ports:
+      - '${SQL_PORT}:3306'
+    environment:
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD_ROOT}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_HOST: ${DB_HOST}
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+volumes:
+  node_modules:
+  red_data: {}
