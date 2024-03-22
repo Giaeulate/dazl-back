@@ -23,7 +23,7 @@ export class EventsActiveByLatLogGetter {
     private readonly cityByLatLogGetter: CityByLatLogGetter,
     private readonly eventCategorySearcher: EventCategorySearcher,
     private readonly geometricCalculatorService: GeometricCalculatorService,
-  ) {}
+  ) { }
 
   async run({ lat, log, distance }: Params) {
     const city = await this.cityByLatLogGetter.run({
@@ -32,6 +32,8 @@ export class EventsActiveByLatLogGetter {
     });
 
     const eventsAll = await this.eventRepository.searchActive();
+
+    const categoryAll = await this.eventCategorySearcher.getAll();
 
     const eventsPromise = eventsAll
       .filter((event) => event.cityId.equals(city.id))
@@ -53,7 +55,7 @@ export class EventsActiveByLatLogGetter {
 
     const events = await Promise.all(eventsPromise);
 
-    return events
+    events
       .map(({ event, category }) => ({
         event: event.toPrimitives(),
         category: category.toPrimitives(),
@@ -84,5 +86,9 @@ export class EventsActiveByLatLogGetter {
         created_at: event.createdAt,
         updated_at: event.updatedAt,
       }));
+    return {
+      events,
+      'categories': categoryAll
+    }
   }
 }

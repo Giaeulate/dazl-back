@@ -12,7 +12,7 @@ export class EventCategorySearcher {
   constructor(
     @Inject(EVENT_CATEGORY_REPOSITORY)
     private readonly repository: EventCategoryRepository,
-  ) {}
+  ) { }
 
   public async search(params: Params) {
     const eventCategory = await this.repository.search(
@@ -20,4 +20,10 @@ export class EventCategorySearcher {
     );
     return eventCategory ? eventCategory : null;
   }
+
+  public async getAll() {
+    return await this.repository.searchAll();
+  }
+
+
 }
