@@ -55,6 +55,7 @@ export class EventsActiveByLatLogGetter {
 
     const events = await Promise.all(eventsPromise);
 
+    
     events
       .map(({ event, category }) => ({
         event: event.toPrimitives(),
