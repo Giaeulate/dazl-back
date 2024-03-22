@@ -1,0 +1,1 @@
+{"version":3,"file":"SuccessfulFormatResponse.js","sourceRoot":"","sources":["../../../../../src/Contexts/Shared/domain/response/SuccessfulFormatResponse.ts"],"names":[],"mappings":";;;AAAA,qDAAkD;AAElD,MAAa,wBAA+B,SAAQ,+BAAc;IAGhE,YAAY,KAAW,EAAE,aAAqB,GAAG;QAC/C,KAAK,CAAC,IAAI,EAAE,cAAc,EAAE,UAAU,CAAC,CAAC;QACxC,IAAI,CAAC,KAAK,GAAG,KAAK,CAAC;IACrB,CAAC;CACF;AAPD,4DAOC"}

@@ -1,0 +1,67 @@
+import { CreatedAt } from '../../../Shared/domain/CreatedAt';
+import { UpdatedAt } from '../../../Shared/domain/UpdatedAt';
+import { MessageId } from './MessageId';
+import { MessageText } from './MessageText';
+import { AggregateRoot } from '../../../Shared/domain/AggregateRoot';
+import { UserActivationId } from '../../user_activation/domain/UserActivationId';
+import { ChannelId } from '../../channel/domain/ChannelId';
+import { MessageIsSent } from './MessageIsSent';
+import { MessageActive } from './MessageActive';
+import { MessageType } from './MessageType';
+import { MessageUserReadId } from './MessageUserReadId';
+import { MessageReported } from './MessageReported';
+import { MessageResponse } from './MessageResponse';
+export declare class Message extends AggregateRoot {
+    id: MessageId;
+    text: MessageText;
+    isSent: MessageIsSent;
+    active: MessageActive;
+    type: MessageType;
+    channelId: ChannelId;
+    userToId: UserActivationId;
+    useFromId: UserActivationId;
+    userReadId: MessageUserReadId;
+    reported: MessageReported;
+    response: MessageResponse;
+    createdAt: CreatedAt;
+    updatedAt: UpdatedAt;
+    constructor(id: MessageId, text: MessageText, isSent: MessageIsSent, type: MessageType, active: MessageActive, channelId: ChannelId, useFromId: UserActivationId, userToId: UserActivationId, userReadId: MessageUserReadId, reported: MessageReported, response: MessageResponse);
+    static create(plainData: {
+        id: string;
+        text: string;
+        isSent: number;
+        type: string;
+        active: number;
+        channelId: string;
+        userFromId: string;
+        userToId: string;
+        response: string;
+    }): Message;
+    static fromPrimitives(plainData: {
+        id: string;
+        text: string;
+        isSent: number;
+        type: string;
+        active: number;
+        channelId: string;
+        userFromId: string;
+        userToId: string;
+        reported: boolean;
+        response: string;
+    }): Message;
+    toPrimitives: () => {
+        id: string;
+        text: string;
+        isSent: number;
+        type: string;
+        active: number;
+        channelId: string;
+        userFromId: string;
+        userToId: string;
+        reported: boolean;
+        response: string;
+        createdAt: string;
+        updatedAt: string;
+    };
+    desactive(): void;
+}

@@ -1,0 +1,52 @@
+import { AggregateRoot } from '../../../Shared/domain/AggregateRoot';
+import { CreatedAt } from '../../../Shared/domain/CreatedAt';
+import { UpdatedAt } from '../../../Shared/domain/UpdatedAt';
+import { UserLiveId } from './UserLiveId';
+import { UserLiveActive } from './UserLiveActive';
+import { UserLiveExpirationDate } from './UserLiveExpirationDate';
+import { UserLiveActiveDate } from './UserLiveActiveDate';
+import { UserId } from '../../users/domain/UserId';
+import { UserLiveStatus } from './UserLiveStatus';
+type Primitive = {
+    id: string;
+    active: number;
+    userId: string;
+    status: string;
+    expirationDate: string;
+    activeDate: string;
+    createdAt: string;
+    updatedAt: string;
+};
+type Params = {
+    id: string;
+    userId: string;
+    active: number;
+    expirationDate: string;
+    activeDate: string;
+};
+export declare class UserLive extends AggregateRoot {
+    readonly id: UserLiveId;
+    readonly userId: UserId;
+    private _active;
+    private _status;
+    private _expirationDate;
+    private _activeDate;
+    readonly createdAt: CreatedAt;
+    readonly updatedAt: UpdatedAt;
+    constructor(id: UserLiveId, userId: UserId, active: UserLiveActive, status: UserLiveStatus, expirationDate: UserLiveExpirationDate, activeDate: UserLiveActiveDate, createdAt: CreatedAt, updatedAt: UpdatedAt);
+    get status(): UserLiveStatus;
+    set status(value: UserLiveStatus);
+    get activeDate(): UserLiveActiveDate;
+    set activeDate(value: UserLiveActiveDate);
+    get expirationDate(): UserLiveExpirationDate;
+    set expirationDate(value: UserLiveExpirationDate);
+    get active(): UserLiveActive;
+    set active(value: UserLiveActive);
+    static create(params: Params): UserLive;
+    toPrimitives(): Primitive;
+    activeLive(): void;
+    holdingLive(time: number): void;
+    desactiveLive(): void;
+    isExpirated(): boolean;
+}
+export {};
