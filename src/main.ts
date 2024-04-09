@@ -11,7 +11,7 @@ async function main() {
     console.log(process.env.DB_HOST);
     console.log(process.env.DB_PORT);
     const app = await NestFactory.create(AppModule, { cors: true });
-    app.useGlobalPipes(new ValidationPipe());
+    app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
     const configService = app.get(ConfigService);
     const redisIoAdapter = new RedisIoAdapter(app);
     await redisIoAdapter.connectToRedis();

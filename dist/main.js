@@ -12,7 +12,7 @@ async function main() {
         console.log(process.env.DB_HOST);
         console.log(process.env.DB_PORT);
         const app = await core_1.NestFactory.create(app_module_1.AppModule, { cors: true });
-        app.useGlobalPipes(new common_1.ValidationPipe());
+        app.useGlobalPipes(new common_1.ValidationPipe({ whitelist: true }));
         const configService = app.get(config_1.ConfigService);
         const redisIoAdapter = new RedisIoAdapter_1.RedisIoAdapter(app);
         await redisIoAdapter.connectToRedis();
