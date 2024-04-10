@@ -1,0 +1,13 @@
+[
+  {
+    "name": "default",
+    "type": "mysql",
+    "host": "68.183.31.182",
+    "port": 3306,
+    "username": "dazl_user",
+    "password": "ABCabc123",
+    "database": "dazl_db",
+    "synchronize": false,
+    "entities": ["entities/*{.js,.ts}"]
+  }
+]
