@@ -27,6 +27,7 @@ const IsBoolean_1 = require("../../../../Contexts/Dazl/Shared/IsBoolean");
 const UserActivationFemale_1 = require("../../../../Contexts/Dazl/user_activation/domain/UserActivationFemale");
 const UserActivationLgtb_1 = require("../../../../Contexts/Dazl/user_activation/domain/UserActivationLgtb");
 const ForbiddenWordAllSearcher_1 = require("../../../../Contexts/Dazl/forbidden_words/application/search-all/ForbiddenWordAllSearcher");
+const swagger_1 = require("@nestjs/swagger");
 class BodyPutUserIdController {
 }
 class ParamsFiles {
@@ -41,9 +42,9 @@ let PutUserIdController = class PutUserIdController {
     }
     async run(id, body, files) {
         var _a, _b;
-        const words = await this.forbiddenWordAllSearcher.search();
         console.log('PutUserIdController', files);
         console.log('PutUserIdController', body);
+        const words = await this.forbiddenWordAllSearcher.search();
         const { instagram, whatsapp, email } = body;
         await this.updaterUserService.run(new UserId_1.UserId(id), {
             otherEmail: email,
@@ -89,6 +90,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PutUserIdController.prototype, "run", null);
 PutUserIdController = __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Controller)('users'),
     (0, common_1.UseGuards)((0, passport_1.AuthGuard)('jwt')),
     __metadata("design:paramtypes", [updater_user_service_1.UpdaterUserService,

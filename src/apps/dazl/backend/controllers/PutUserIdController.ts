@@ -22,6 +22,7 @@ import { IsBoolean } from '../../../../Contexts/Dazl/Shared/IsBoolean';
 import { UserActivationFemale } from '../../../../Contexts/Dazl/user_activation/domain/UserActivationFemale';
 import { UserActivationLgtb } from '../../../../Contexts/Dazl/user_activation/domain/UserActivationLgtb';
 import { ForbiddenWordAllSearcher } from '../../../../Contexts/Dazl/forbidden_words/application/search-all/ForbiddenWordAllSearcher';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 class BodyPutUserIdController {
   instagram?: string;
@@ -40,6 +41,7 @@ class ParamsFiles {
   active_photo: Array<Express.Multer.File>;
 }
 
+@ApiBearerAuth()
 @Controller('users')
 @UseGuards(AuthGuard('jwt'))
 export class PutUserIdController {
@@ -67,10 +69,10 @@ export class PutUserIdController {
     @Body() body: BodyPutUserIdController,
     @UploadedFiles() files: ParamsFiles,
   ) {
-    const words = await this.forbiddenWordAllSearcher.search();
-
     console.log('PutUserIdController', files);
     console.log('PutUserIdController', body);
+    const words = await this.forbiddenWordAllSearcher.search();
+
     const { instagram, whatsapp, email } = body;
     await this.updaterUserService.run(new UserId(id), {
       otherEmail: email,

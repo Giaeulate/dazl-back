@@ -22,6 +22,7 @@ let GetUserIdController = class GetUserIdController {
         this.finderUser = finderUser;
     }
     async run(id) {
+        console.log('users');
         const response = await this.finderUser.run(new UserId_1.UserId(id));
         return {
             status: true,

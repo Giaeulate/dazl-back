@@ -39,6 +39,7 @@
     "@nestjs/platform-express": "^9.0.11",
     "@nestjs/platform-socket.io": "^9.0.11",
     "@nestjs/schedule": "^3.0.4",
+    "@nestjs/swagger": "^7.3.1",
     "@nestjs/typeorm": "^9.0.1",
     "@nestjs/websockets": "^9.0.11",
     "@socket.io/redis-adapter": "^8.2.1",
@@ -71,7 +72,6 @@
     "uuid-validate": "^0.0.3"
   },
   "devDependencies": {
-    "@types/nodemailer": "^6.4.6",
     "@nestjs/cli": "^9.1.2",
     "@nestjs/schematics": "^9.0.3",
     "@nestjs/testing": "^9.0.0",
@@ -84,6 +84,7 @@
     "@types/jest": "28.1.4",
     "@types/multer": "^1.4.7",
     "@types/node": "^16.0.0",
+    "@types/nodemailer": "^6.4.6",
     "@types/nunjucks": "^3.2.0",
     "@types/passport-jwt": "^3.0.6",
     "@types/sharp": "^0.31.1",

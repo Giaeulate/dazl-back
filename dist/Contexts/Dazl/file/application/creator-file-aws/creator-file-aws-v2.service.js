@@ -29,7 +29,6 @@ let CreatorFileAwsV2Service = class CreatorFileAwsV2Service {
         };
         try {
             const data = await this.s3Client.send(new client_s3_1.PutObjectCommand(params));
-            console.log('data', data);
             return data;
         }
         catch (err) {

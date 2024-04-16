@@ -26,7 +26,7 @@ export class CreatorFileAwsV2Service {
 
     try {
       const data = await this.s3Client.send(new PutObjectCommand(params));
-      console.log('data', data);
+      // console.log('data', data);
       return data; // For unit tests.
     } catch (err) {
       console.log('Error', err);
