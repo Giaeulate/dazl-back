@@ -85,4 +85,10 @@ export class UserActivations {
 
   @Column("text", { name: "token" })
   token: string;
+
+  isStillActive(): boolean {
+    const expirationDate = Number(this.expirationDate);
+    const currentDate = new Date().getTime();
+    return expirationDate > currentDate;
+  }
 }

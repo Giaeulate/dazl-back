@@ -8,9 +8,15 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
 import { environments } from './environments';
 import { DazlModule } from './apps/dazl/dazl.module';
 import { TypeOrmDatabaseModule } from './database/TypeOrmDatabaseModule';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
+    EventEmitterModule.forRoot({
+      maxListeners: Infinity,
+      removeListener: true,
+      verboseMemoryLeak: true,
+    }),
     MailerModule.forRootAsync({
       useFactory: async (config: ConfigService) => ({
         transport: {

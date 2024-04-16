@@ -94,4 +94,14 @@ export class Users extends BaseEntity {
 
   @Column("text", { name: "blocked_message", nullable: true })
   blockedMessage: string | null;
+
+  isActiveEmail() {
+    return this.isEmailConfirmed === 1;
+  }
+
+  activeUser() { return 1; }
+
+  inactiveUser() { return 0; }
+
+
 }
